@@ -1,0 +1,30 @@
+.main-container{
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.registeruser-inner-container{
+    display: flex;
+    justify-content: space-around;
+    width: 100vw;
+}
+
+.userName-field-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.check-avail-button-div{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.check-avail-button{
+    width: fit-content;
+}
+
+
+
+

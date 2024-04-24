@@ -1,0 +1,12 @@
+.tag_menu_div{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+
+}
+
+.tag_icon_img{
+    width: 25px;
+    height: 25px;
+}

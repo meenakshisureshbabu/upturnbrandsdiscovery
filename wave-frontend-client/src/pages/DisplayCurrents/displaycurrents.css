@@ -1,0 +1,7 @@
+.display-currents-container{
+    border: groove;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    
+}

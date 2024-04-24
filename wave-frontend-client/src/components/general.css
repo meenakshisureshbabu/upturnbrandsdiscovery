@@ -1,0 +1,18 @@
+.input-field,.reg-input-field{
+    display: flex;
+    justify-content: space-between;
+    gap: 5rem;
+}
+
+input{
+    font-size: 25px;
+}
+
+label{
+    font-size: 25px;
+}
+
+
+
+
+

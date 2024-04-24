@@ -1,0 +1,13 @@
+.user-profile-details-container{
+    border: groove;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.profil-pic{
+    height: 100px;
+    width: 100px;
+    border-radius: 10rem;
+}

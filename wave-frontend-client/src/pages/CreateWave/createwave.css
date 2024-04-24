@@ -1,0 +1,9 @@
+.create-wave-text-box-container{
+    /* margin: 2rem 2rem 2rem 2rem; */
+    display: flex;
+    justify-content: center;
+    border: solid black;
+    border-radius: 2rem;
+    padding: 2rem 2rem 2rem 2rem;
+}
+

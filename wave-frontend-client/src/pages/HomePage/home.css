@@ -1,0 +1,24 @@
+.main-home-container{
+    display: flex; 
+    height: 100vh;
+    gap: 2rem;
+    margin: 5rem 2rem 1rem 2rem;
+}
+
+.home-first-container{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.home-second-container{
+    width: 60%;
+    height: 100%;
+}
+
+.home-third-container{
+    width: 25%;
+    height: 100%;
+}
