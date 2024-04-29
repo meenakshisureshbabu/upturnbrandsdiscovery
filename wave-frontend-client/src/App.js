@@ -10,15 +10,12 @@ import EmailIdProvider from "./context/EmailIdContext";
 import UserNameProvider from "./context/UserNameContext";
 import Home from "./pages/HomePage/Home";
 import { getUser } from "./api/axiosInstance";
-import { useTheme } from "@mui/system"
+import { useTheme } from "@mui/system";
 import { ThemeProvider } from "@mui/system";
 import Header from "./components/Header";
 
-
-
 function App() {
   const [user, setUser] = useState(getUser());
-  
 
   return (
     <div className="App">
@@ -41,29 +38,31 @@ function App() {
         </>
       ) : (
         <> */}
-          <UserNameProvider>
-            <Header/>
-            <Routes>
-              <Route
-                path="/register"
-                element={<RegisterNewUser user={user} setUser={setUser} />}
-              />
-              <Route
-                path="/login"
-                element={<LoginPage user={user} setUser={setUser} />}
-              />
-              <Route
-                  path="/home"
-                  element={<Home user={user} setUser={setUser} />}
-                />
-                <Route
-                  path="/profile"
-                  element={<Profile user={user} setUser={setUser} />}
-                />
-              {/* <Route path="/*" element={<Navigate to="/login" />} /> */}
-            </Routes>
-          </UserNameProvider>
-        {/* </>
+      <UserNameProvider>
+        <EmailIdProvider>
+          <Header />
+          <Routes>
+            <Route
+              path="/register"
+              element={<RegisterNewUser user={user} setUser={setUser} />}
+            />
+            <Route
+              path="/login"
+              element={<LoginPage user={user} setUser={setUser} />}
+            />
+            <Route
+              path="/home"
+              element={<Home user={user} setUser={setUser} />}
+            />
+            <Route
+              path="/profile"
+              element={<Profile user={user} setUser={setUser} />}
+            />
+            {/* <Route path="/*" element={<Navigate to="/login" />} /> */}
+          </Routes>
+        </EmailIdProvider>
+      </UserNameProvider>
+      {/* </>
       )} */}
     </div>
   );

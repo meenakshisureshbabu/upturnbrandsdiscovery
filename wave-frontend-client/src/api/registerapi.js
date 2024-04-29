@@ -16,7 +16,10 @@ export const getRegisterStatus = async (regUserName) => {
     const response = await axiosInstance.post(
       userConfig.registerUserEndPoint + `${regUserName}`
     );
-    if (response.status === 200) getTokenFromResponse(response);
+    if (response.status === 200) 
+      getTokenFromResponse(response);
+    else
+      throw new Error;
     return response;
   } catch (error) {
     return error.response;

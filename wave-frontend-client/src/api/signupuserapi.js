@@ -34,7 +34,11 @@ export const signUpUser = async (regUserName, userEmail, userPassword) => {
         withCredentials: true,
       }
     );
-    if (signUpUserResponse.status === 200) getTokenFromResponse(signUpUserResponse);
+    console.log("HHHHHHHHHHHHHHHHHHHHHHHHHH",signUpUserResponse)
+    if (signUpUserResponse.status === 200) 
+      getTokenFromResponse(signUpUserResponse);
+    else
+      throw new Error;
     return signUpUserResponse;
   } catch (error) {
     throw new error;

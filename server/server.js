@@ -1,6 +1,8 @@
 require("dotenv").config();
+require('./config/database');  
 const express = require("express");
 const cors = require("cors");
+const path = require('path');
 const {
   headers,
 } = require("../wave-frontend-client/src/mockdata/registerusermockdataresponse");
@@ -18,44 +20,10 @@ app.use(
 
 app.use(express.json());
 
-app.post("/api/styx/register/:user", (req, res) => {
-  const userName = req.params.user;
-  //console.log(userName)
+app.use('/api/styx', require('./routes/api/users'));
 
-  //Success response
 
-  const registerUserResponse = {};
-  res.header("X-Auth-Token", "hfnsdyH6584d7596njshm");
-  res.status(200).json(registerUserResponse);
 
-  //Failure Response
-
-  // const registerUserResponse = {
-  //     "message":"Username already exists",
-  // };
-  // //res.header('X-Auth-Token','hfnsdyH6584d7596njshm');
-  // res.status(400).json(registerUserResponse);
-});
-
-app.post("/api/styx/signup/:user", (req, res) => {
-  const userName = req.params.user;
-  //success response
-  const userObjResponse = {
-    currents: [],
-    email: "meenakshi.bca@gmail.com",
-    feed: [],
-    hashedPassword: "$hahehfsjdbgjskdthjgns48t7ew85kerjgnsdkfj",
-    id: "9bsdfhjsb-fhjf-sdgh-eyr645-hVdfhjsgfjzb",
-    notifications: [],
-    profile: {
-      email: "",
-      organization: "",
-      username: "",
-    },
-    shared: [],
-  };
-  res.status(200).json(userObjResponse);
-});
 
 app.post("/api/styx/user/:user/profile", (req, res) => {
   const userName = req.params.user;

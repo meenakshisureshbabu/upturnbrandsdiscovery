@@ -46,7 +46,8 @@ function SignUp({ userName, isEnabled,user }) {
       // You can now use `email`, `password`, and `confirmPassword` here
       // await signUpUser(email, password); // Uncomment this line when ready
       try {
-        const signUpResponse = await signUpUser(userName, email, password);
+        const signUpResponse = await signUpUser(user, email, password);
+        console.log(signUpResponse)
         setEmail("");
         setPassword("");
         setConfirmPassword("");
