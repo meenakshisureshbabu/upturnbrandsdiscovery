@@ -25,26 +25,7 @@ app.use('/api/styx', require('./routes/api/users'));
 
 
 
-app.post("/api/styx/user/:user/profile", (req, res) => {
-  const userName = req.params.user;
-  //console.log(req);
-  const userProfileResponse = {
-    currents: [],
-    email: "meenakshi.bca@gmail.com",
-    feed: [],
-    hashedPassword: "$hahehfsjdbgjskdthjgns48t7ew85kerjgnsdkfj",
-    id: "9bsdfhjsb-fhjf-sdgh-eyr645-hVdfhjsgfjzb",
-    notifications: [],
-    profile: {
-      email: "meenakshi.bca@gmail.com",
-      organization: "Upturn Brands",
-      username: userName,
-    },
-    shared: [],
-  };
-  res.status(200).json(userProfileResponse);
-  //res.status(400).json(userProfileResponse);
-});
+
 
 app.post("/api/styx/user/:user/wave/create", (req, res) => {
   const userName = req.params.user;

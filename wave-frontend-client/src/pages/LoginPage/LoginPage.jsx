@@ -21,7 +21,7 @@ function LoginPage({user,setUser}) {
     // You can now use `email`, `password`, and `confirmPassword` here
     // await signUpUser(email, password); // Uncomment this line when ready
     try {
-      const loginResponse = await loginUserResponse(userNameEntered, email, password);
+      const loginResponse = await loginUserResponse(userNameEntered, password);
       setEmail("");
       setPassword("");
       setUserName(userNameEntered)
@@ -46,7 +46,7 @@ function LoginPage({user,setUser}) {
           <form onSubmit={handleSubmit}>
             <div style={{padding:10}}>
               <Input
-                label="Username"
+                label="Username/Email"
                 type="text"
                 name="username"
                 value={userNameEntered}

@@ -28,19 +28,16 @@ export const signUpUser = async (regUserName, userEmail, userPassword) => {
       userConfig.signUpUserEndPoint + `${regUserName}`,
       userData,
       {
-        headers:{
-          Authorization:'Bearer '+authToken
+        headers: {
+          Authorization: "Bearer " + authToken,
         },
         withCredentials: true,
       }
     );
-    console.log("HHHHHHHHHHHHHHHHHHHHHHHHHH",signUpUserResponse)
-    if (signUpUserResponse.status === 200) 
-      getTokenFromResponse(signUpUserResponse);
-    else
-      throw new Error;
+
+    if (signUpUserResponse.status !== 200) throw new Error();
     return signUpUserResponse;
   } catch (error) {
-    throw new error;
+    throw new error();
   }
 };

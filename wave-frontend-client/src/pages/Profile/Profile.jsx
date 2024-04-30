@@ -5,7 +5,7 @@ import { getUpdatedUserProfile } from "../../api/profileapi";
 import { properties } from "../../properties/properties";
 import { Navigate, useNavigate } from "react-router-dom";
 import Input from "../../components/Input";
-import '../Profile/profile.css'
+import "../Profile/profile.css";
 
 function Profile() {
   const { emailId } = useContext(EmailIdContext);
@@ -27,11 +27,7 @@ function Profile() {
     event.preventDefault();
 
     try {
-      const userProfileResponse = await getUpdatedUserProfile(
-        userName,
-        emailId,
-        organization
-      );
+      await getUpdatedUserProfile(userName, emailId, organization);
       // Add success message here
       setIsLoaded(true);
       setProfileResponse(properties.successProfileMsg);
