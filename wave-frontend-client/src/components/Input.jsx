@@ -18,7 +18,7 @@ function Input({ label, type, name, value, onChange, error, isEnabled }) {
           disabled={isEnabled}
         />
       </div>
-      {error && <p className="error">{error}</p>}
+      {/* {error && <p className="error">{error}</p>} */}
     </div>
    
     </>

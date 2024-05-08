@@ -1,0 +1,17 @@
+.app-header-div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.styx-logo-img{
+    width: 300px;
+    height: 100px;
+}
+
+.app-header-menu-div{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 5em;
+    padding: 1em 1em 1em 1em;
+    height: 100%;
+}

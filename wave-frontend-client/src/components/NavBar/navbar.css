@@ -1,0 +1,6 @@
+.navbar-div{
+    display: flex;
+    justify-content: flex-end;
+    gap: 5em;
+}
+

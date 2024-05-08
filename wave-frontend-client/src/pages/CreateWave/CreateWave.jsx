@@ -18,7 +18,7 @@ function CreateWave() {
   });
   return (
     <div className='create-wave-text-box-container'>
-        <FullWidthTextField className='createWave' label='Create a Wave' id='createWave' handleClickOpen={handleClickOpen} setOpen={setOpen}/>
+        <FullWidthTextField className='createWave' label='Create a Wave' id='createWave' handleClickOpen={handleClickOpen} setOpen={setOpen} width='500' maxWidth='100%'/>
         <CustomDialog
         open={open}
         TransitionComponent={Transition}

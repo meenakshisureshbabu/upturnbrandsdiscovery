@@ -52,3 +52,9 @@ export function getUser() {
   // If there's a user, return the user, otherwise return null
   return user ? user : null;
 }
+
+
+export function logout(){
+  //localStorage.removeItem('token');
+  cookies.remove();
+}

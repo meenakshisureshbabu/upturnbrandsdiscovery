@@ -1,13 +1,16 @@
 import React from "react";
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import Input from "../../components/Input";
 import { loginUserResponse } from "../../api/loginapi";
 import { properties } from "../../properties/properties";
 import { useNavigate } from "react-router-dom";
 import "../LoginPage/loginpage.css";
 import { UserNameContext } from "../../context/UserNameContext";
+import AppHeader from "../../components/AppHeader/AppHeader";
+import FullWidthTextField from "../../components/FullWidthTextField";
+import { Link } from "react-router-dom";
 
-function LoginPage({user,setUser}) {
+function LoginPage({ user, setUser }) {
   const { userName, setUserName } = useContext(UserNameContext);
   const [email, setEmail] = useState("");
   const [userNameEntered, setUserNameEntered] = useState("");
@@ -24,8 +27,8 @@ function LoginPage({user,setUser}) {
       const loginResponse = await loginUserResponse(userNameEntered, password);
       setEmail("");
       setPassword("");
-      setUserName(userNameEntered)
-      setUser(userNameEntered)
+      setUserName(userNameEntered);
+      setUser(userNameEntered);
       navigate("/home/");
     } catch (err) {
       setError(properties.errorMsg);
@@ -34,38 +37,42 @@ function LoginPage({user,setUser}) {
 
   return (
     <>
+      <AppHeader />
       <div className="login-container">
-        <div>
-          <img
-            src="https://static.wixstatic.com/media/39e826_73a6db320f65402a8ad3812ee3f05b30~mv2.png/v1/fill/w_818,h_116,al_c,lg_1,q_85,enc_auto/Logo_e37135_text%20on%20white.png"
-            alt="Logo"
-            className="logo"
-          />
-        </div>
         <div className="inputfields-container">
+          <div className="log-into-ur-acc">
+            <h2>Log Into your account</h2>
+          </div>
+
           <form onSubmit={handleSubmit}>
-            <div style={{padding:10}}>
-              <Input
+            <div className="text-fields-div">
+              <FullWidthTextField
                 label="Username/Email"
-                type="text"
-                name="username"
-                value={userNameEntered}
-                error={error}
-                onChange={(event) => setUserNameEntered(event.target.value)}
+                id="loginusername"
+                width={500}
+                maxWidth="100%"
+                borderRadius="10px"
               />
-            </div>
-            <div style={{padding:10}}>
-              <Input
+              <FullWidthTextField
                 label="Password"
-                type="password"
-                name="password"
-                value={password}
-                error={error}
-                onChange={(event) => setPassword(event.target.value)}
+                id="loginusername"
+                width={500}
+                maxWidth="100%"
+                borderRadius="10px"
               />
             </div>
-            <div style={{padding:10}}>
-              <button type="submit">Submit</button>
+            <div>
+              <div className="login-questions-div">
+                <div>
+                  <Link to="/signup">Don't have an account?</Link>
+                </div>
+                <div>
+                  <Link to="/forgotPwd">Trouble signing in?</Link>
+                </div>
+              </div>
+            </div>
+            <div className="login-button-div" style={{ padding: 10 }}>
+              <button className='login-button' type="submit">Login</button>
             </div>
           </form>
         </div>
