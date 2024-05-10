@@ -12,7 +12,14 @@ label{
     font-size: 25px;
 }
 
+.usernamerules-div{
+    text-align: left;
+}
 
+.rules-list-div{
+    line-height: 1em;
+    font-size: 0.75em;
+}
 
 
 

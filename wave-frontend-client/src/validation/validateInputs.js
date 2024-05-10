@@ -3,7 +3,7 @@ export const validateUsername = (userName) => {
   if (!userName || userName === "") {
     return false;
   } else {
-    const userNameRegex = /^[a-zA-Z0-9_$*#!]{6,16}$/;
+    const userNameRegex = /^[a-zA-Z0-9_.]{1,30}$/;
     return userNameRegex.test(userName);
   }
 };

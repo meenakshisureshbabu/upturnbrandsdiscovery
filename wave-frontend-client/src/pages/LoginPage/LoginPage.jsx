@@ -64,7 +64,7 @@ function LoginPage({ user, setUser }) {
             <div>
               <div className="login-questions-div">
                 <div>
-                  <Link to="/signup">Don't have an account?</Link>
+                  <Link to="/register">Don't have an account?</Link>
                 </div>
                 <div>
                   <Link to="/forgotPwd">Trouble signing in?</Link>

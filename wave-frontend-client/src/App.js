@@ -10,6 +10,7 @@ import UserNameProvider from "./context/UserNameContext";
 import Home from "./pages/HomePage/Home";
 import { getUser } from "./api/axiosInstance";
 import Header from "./components/Header/Header";
+import SignUp from "./pages/SignUp/SignUp";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -43,6 +44,10 @@ function App() {
                 <Route
                   path="/register"
                   element={<RegisterNewUser user={user} setUser={setUser} />}
+                />
+                <Route
+                  path="/signup"
+                  element={<SignUp user={user} setUser={setUser} />}
                 />
                 <Route
                   path="/login"

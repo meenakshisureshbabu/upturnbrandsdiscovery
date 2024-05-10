@@ -1,4 +1,54 @@
-.signup-main-container{
-    display: flex;
-    justify-content: center;
+.signup-main-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 1em 1em 1em;
+}
+
+.signup-saying-image-div {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+}
+.signup-styx-saying-div {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1em;
+  text-align: left;
+}
+
+.signup-at-one-place {
+  text-align: left;
+  margin-top: -2em;
+}
+
+.signup-image-div {
+  display: flex;
+  flex-direction: column;
+}
+.signup-image {
+  height: 100%;
+  width: 100%;
+}
+
+.signup-image-div {
+  height: 100%;
+  width: 100%;
+}
+
+.signup-form-div {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 2em;
+  line-height: 4em;  
+}
+
+
+
+.create-account-button{
+    width: 400px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 20px;
 }

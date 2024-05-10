@@ -5,7 +5,7 @@ import '../components/components.css'
 import { borderRadius, style } from '@mui/system';
 
 
-function FullWidthTextField({label,id,handleClickOpen,setOpen,width,maxWidth,borderRadius}) {
+function FullWidthTextField({label,id,handleClickOpen,setOpen,width,maxWidth,borderRadius,handleOnBlur,setMethod}) {
 
   return (
     <Box
@@ -14,7 +14,7 @@ function FullWidthTextField({label,id,handleClickOpen,setOpen,width,maxWidth,bor
         maxWidth: maxWidth,
       }}
     >
-      <TextField fullWidth label={label} id={id} onClick={handleClickOpen} setOpen={setOpen} InputProps={{style:{borderRadius:borderRadius}}}/>
+      <TextField fullWidth onChange={(event) => setMethod(event.target.value)} label={label} id={id} size='small' onBlur={handleOnBlur} onClick={handleClickOpen} setOpen={setOpen} InputProps={{style:{borderRadius:borderRadius}}}/>
     </Box>
   )
 }
