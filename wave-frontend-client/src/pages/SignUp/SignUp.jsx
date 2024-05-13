@@ -1,72 +1,83 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { signUpUser } from "../../api/signupuserapi";
 import {
   validatePassword,
   validateEmailId,
 } from "../../validation/validateInputs";
-import Input from "../../components/Input";
 import { properties } from "../../properties/properties";
 import "../SignUp/signup.css";
 import { useNavigate } from "react-router-dom";
-import { EmailIdContext } from "../../context/EmailIdContext";
 import AppHeader from "../../components/AppHeader/AppHeader";
-import FullWidthTextField from "../../components/FullWidthTextField";
-import { TextField } from "@mui/material";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { useLocation } from "react-router-dom";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-function SignUp({ userName, isEnabled, user }) {
+
+function SignUp() {
+  const { state } = useLocation();
+  const userName = state.userName;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState({});
   const [error, setError] = useState();
+  const [emailError, setEmailError] = useState();
+  const [pwdError, setPwdError] = useState();
+  const [confnPwdError, setConfnPwdError] = useState();
   const navigate = useNavigate();
-  const { emailId, setEmailId } = useContext(EmailIdContext);
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const confirmPwdRef = useRef();
+  const [visiblePassword,setVisiblePassword] = useState(false);
 
-  const validateForm = () => {
-    const emailError = validateEmailId(email) ? "" : properties.invalidEmailId;
-    const passwordError = validatePassword(password)
-      ? ""
-      : properties.invalidPassword;
-    const confirmPasswordError =
-      confirmPassword.length > 0 && confirmPassword === password
-        ? ""
-        : properties.passwordNotMatch;
+  const handleClickShowPassword = () => {
+    setVisiblePassword(!visiblePassword);
+  }
 
-    setErrors({
-      email: emailError,
-      password: passwordError,
-      confirmPassword: confirmPasswordError,
-    });
-
-    return (
-      emailError === "" && passwordError === "" && confirmPasswordError === ""
-    );
+  const validateEmail = () => {
+    // const emailErrorMsg = validateEmailId(email) ? "" : properties.invalidEmailId;
+    if (!validateEmailId(email)) {
+      setEmailError(properties.invalidEmailId);
+      emailRef.current.focus();
+    } else {
+      setEmailError("");
+    }
   };
 
-  const validateEmail = (e) => {
-    const emailError = validateEmailId(email) ? "" : properties.invalidEmailId;
-    setError(emailError)
-  }
+  const validatePwd = () => {
+    // const emailErrorMsg = validateEmailId(email) ? "" : properties.invalidEmailId;
+    if (!validatePassword(password)) {
+      setPwdError(properties.invalidPassword);
+      passwordRef.current.focus();
+    } else {
+      setPwdError("");
+    }
+  };
+
+  const validateConfnPwd = () => {
+    if (confirmPassword.length > 0 && confirmPassword === password) {
+      setConfnPwdError("");
+    } else {
+      setConfnPwdError(properties.passwordNotMatch);
+      //confirmPwdRef.current.focus();
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    alert(email);
-    if (validateForm()) {
-      // submit form
-      // You can now use `email`, `password`, and `confirmPassword` here
-      // await signUpUser(email, password); // Uncomment this line when ready
-      try {
-        const signUpResponse = await signUpUser(user, email, password);
-        console.log(signUpResponse);
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
-        setErrors({});
-        setEmailId(email);
-        navigate("/profile/");
-      } catch (err) {
-        setErrors({ serverError: properties.errorMsg });
-      }
+    // submit form
+    // You can now use `email`, `password`, and `confirmPassword` here
+    // await signUpUser(email, password); // Uncomment this line when ready
+    try {
+      const signUpResponse = await signUpUser(userName, email, password);
+      console.log(signUpResponse);
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setError();
+      navigate("/home/");
+    } catch (err) {
+      setError(properties.errorMsg);
     }
   };
 
@@ -101,11 +112,12 @@ function SignUp({ userName, isEnabled, user }) {
               {/* Username */}
               <TextField
                 fullWidth
-                label="Username"
                 id="loginusername"
                 maxWidth="100%"
                 borderRadius="10px"
                 size="small"
+                value={userName}
+                disabled
               />
             </div>
             <div style={{ display: "flex", gap: "1em" }}>
@@ -142,7 +154,10 @@ function SignUp({ userName, isEnabled, user }) {
                 borderRadius="10px"
                 onChange={(e) => setEmail(e.target.value)}
                 size="small"
-                onBlur={(e) => validateEmail(e)}
+                onBlur={validateEmail}
+                helperText={emailError && emailError}
+                FormHelperTextProps={{ sx: { color: "red" } }}
+                inputRef={emailRef}
               />
             </div>
             <div>
@@ -156,6 +171,12 @@ function SignUp({ userName, isEnabled, user }) {
                 borderRadius="10px"
                 size="small"
                 onChange={(e) => setPassword(e.target.value)}
+                type={visiblePassword ? "text" : "password"}
+                onBlur={validatePwd}
+                helperText={pwdError && pwdError}
+                FormHelperTextProps={{ sx: { color: "red" } }}
+                inputRef={passwordRef}
+                InputProps={{endAdornment:(<InputAdornment position="end"><IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} >{visiblePassword ? <VisibilityIcon /> : <VisibilityOffIcon />}</IconButton></InputAdornment>) }}
               />
             </div>
             <div>
@@ -169,6 +190,11 @@ function SignUp({ userName, isEnabled, user }) {
                 borderRadius="10px"
                 size="small"
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                onBlur={validateConfnPwd}
+                type="password"
+                helperText={confnPwdError && confnPwdError}
+                FormHelperTextProps={{ sx: { color: "red" } }}
+                inputRef={confirmPwdRef}
               />
             </div>
             <div className="create-acct-but-div">

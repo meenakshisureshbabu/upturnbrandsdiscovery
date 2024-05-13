@@ -1,14 +1,11 @@
 import React, { useContext, useState } from "react";
-import { useRef } from "react";
 import { getRegisterStatus } from "../../api/registerapi";
-import SignUp from "../SignUp/SignUp";
 import { validateUsername } from "../../validation/validateInputs";
 import { properties } from "../../properties/properties";
-import UserNameInput from "../../components/UserNameInput";
 import "../Register/registernewuser.css";
 import { UserNameContext } from "../../context/UserNameContext";
 import AppHeader from "../../components/AppHeader/AppHeader";
-import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { InputAdornment, TextField } from "@mui/material";
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import { Link } from "react-router-dom";
 import UsernameRules from "../../components/UsernameRules";
@@ -20,8 +17,7 @@ function RegisterNewUser({ user, setUser }) {
   const { userName, setUserName } = useContext(UserNameContext);
   const [error, setError] = useState();
   const [regUserName, setRegUserName] = useState();
-  const [successmsg, setSuccessmsg] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleRegister = async () => {
     const isValidUserName = validateUsername(regUserName);
     if (!isValidUserName) {
@@ -37,7 +33,7 @@ function RegisterNewUser({ user, setUser }) {
       } else {
         setError(null);
         setUserName(regUserName);
-        navigate("/signup/");
+        navigate("/signup",{state:{userName:regUserName}});
         // setUser(regUserName);
       }
     } catch (err) {

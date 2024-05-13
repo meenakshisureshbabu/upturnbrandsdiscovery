@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useContext } from "react";
-import Input from "../../components/Input";
 import { loginUserResponse } from "../../api/loginapi";
 import { properties } from "../../properties/properties";
 import { useNavigate } from "react-router-dom";
