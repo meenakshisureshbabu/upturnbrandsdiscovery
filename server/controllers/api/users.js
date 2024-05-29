@@ -101,14 +101,15 @@ async function resetpwd(req, res) {
 
 async function login(req, res) {
   try {
+    console.log("REQQQQQQQQ",req.body.username);
     const foundUser = await User.findOne({
       $or: [
-        { email: req.body.username },
+        // { email: req.body.username },
         { "profile.username": req.body.username },
       ],
     });
-    console.log(foundUser);
-    if (!foundUser) throw new Error();
+    console.log("Found User::",foundUser);
+    if (foundUser === null || !foundUser) throw new Error();
     const match = await bcrypt.compare(
       req.body.password,
       foundUser.hashedPassword

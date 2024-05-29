@@ -5,7 +5,7 @@ import { properties } from "../../properties/properties";
 import "../Register/registernewuser.css";
 import { UserNameContext } from "../../context/UserNameContext";
 import AppHeader from "../../components/AppHeader/AppHeader";
-import { InputAdornment, TextField } from "@mui/material";
+import { Button, InputAdornment, TextField } from "@mui/material";
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import { Link } from "react-router-dom";
 import UsernameRules from "../../components/UsernameRules";
@@ -21,7 +21,7 @@ function RegisterNewUser({ user, setUser }) {
   const handleRegister = async () => {
     const isValidUserName = validateUsername(regUserName);
     if (!isValidUserName) {
-      console.log(isValidUserName)
+      console.log(isValidUserName);
       setError(properties.invalidUsernameMsg);
       return;
     }
@@ -33,7 +33,8 @@ function RegisterNewUser({ user, setUser }) {
       } else {
         setError(null);
         setUserName(regUserName);
-        navigate("/signup",{state:{userName:regUserName}});
+
+        navigate("/signup", { state: { userName: regUserName } });
         // setUser(regUserName);
       }
     } catch (err) {
@@ -45,50 +46,36 @@ function RegisterNewUser({ user, setUser }) {
     <>
       <AppHeader />
       <div className="main-container">
-        <div className="registeruser-inner-container">
-          <div className="styx-saying-div">
-            <div className="all-your-services">
-              <h2>All Your Services</h2>
-            </div>
-            <div className="at-one-place">
-              <h2>At One Place</h2>
-            </div>
-          </div>
-        </div>
+        <div className="registeruser-inner-container"></div>
         <div className="register-form-div">
           <div className="register-image-div">
-            <img
-              className="register-image"
-              src="https://plus.unsplash.com/premium_photo-1661673910395-8e30e16c4343?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHNpZ251cHxlbnwwfHwwfHx8MA%3D%3D"
-              alt="logo"
-            />
+            <h1>Welcome!</h1>
           </div>
           <div className="create-acc-outer-div">
-            <div className="create-acc-inner-div">
-              <div style={{ textAlign: "left", fontSize:'25px'}}><b>Create an Account</b></div>
-              <div>
-                <TextField
-                  fullWidth
-                  label="Username"
-                  onChange={(event) => setRegUserName(event.target.value)}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <ArrowCircleRightOutlinedIcon onClick={handleRegister} onKeyDown={(event) => event.key === 'Enter' && handleRegister()} style={{cursor:'pointer'}}/>
-                      </InputAdornment>
-                    ),
-                  }}
-                ></TextField>
-              </div>
-            </div>
             <div className="error-account-link-div">
-              <div>{error && <p className="error" style={{color:'red'}}>*{error}</p>}</div>
+              <TextField
+                sx={{ input: { color: 'white' },backgroundColor:'lightgray' }}
+                fullWidth
+                label="Username"
+                variant="filled"
+                onChange={(event) => setRegUserName(event.target.value)}
+                
+              ></TextField>
               <div>
-                <Link to="/login">Already have an account?</Link>
+                {error && (
+                  <p className="error" style={{ color: "red" }}>
+                    *{error}
+                  </p>
+                )}
+              </div>
+              <div className="already-have-an-account-div">
+                <Link to="/login"><p style={{color:'rgb(78, 143, 235)'}}>Already have an account?</p></Link>
               </div>
             </div>
             <div>
-              <UsernameRules/>
+              <div className="next-button-div">
+                <Button sx={{backgroundColor:'rgb(78, 143, 235)',color:'white',borderRadius:'10px'}} onClick={handleRegister}>Next</Button>
+              </div>
             </div>
           </div>
         </div>

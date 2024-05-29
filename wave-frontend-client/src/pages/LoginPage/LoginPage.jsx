@@ -8,6 +8,7 @@ import { UserNameContext } from "../../context/UserNameContext";
 import AppHeader from "../../components/AppHeader/AppHeader";
 import FullWidthTextField from "../../components/FullWidthTextField";
 import { Link } from "react-router-dom";
+import { TextField } from "@mui/material";
 
 function LoginPage({ user, setUser }) {
   const { userName, setUserName } = useContext(UserNameContext);
@@ -30,7 +31,7 @@ function LoginPage({ user, setUser }) {
       setUser(userNameEntered);
       navigate("/home/");
     } catch (err) {
-      setError(properties.errorMsg);
+      setError(properties.loginErrorMsg);
     }
   };
 
@@ -38,42 +39,63 @@ function LoginPage({ user, setUser }) {
     <>
       <AppHeader />
       <div className="login-container">
-        <div className="inputfields-container">
-          <div className="log-into-ur-acc">
-            <h2>Log Into your account</h2>
-          </div>
-
+        <div className="log-into-ur-acc">
+          <h2>Sign in</h2>
+        </div>
+        <div className="login-account-form-div">
           <form onSubmit={handleSubmit}>
             <div className="text-fields-div">
-              <FullWidthTextField
+              <TextField
                 label="Username/Email"
                 id="loginusername"
+                onChange={(e) => setUserNameEntered(e.target.value)}
                 width={500}
                 maxWidth="100%"
                 borderRadius="10px"
+                sx={{ input: { color: 'white' },backgroundColor:'lightgray' }}
               />
-              <FullWidthTextField
+              <TextField
                 label="Password"
                 id="loginusername"
                 width={500}
+                onChange={(e) => setPassword(e.target.value)}
                 maxWidth="100%"
                 borderRadius="10px"
+                type="password"
+                sx={{ input: { color: 'white' },backgroundColor:'lightgray' }}
               />
             </div>
             <div>
               <div className="login-questions-div">
                 <div>
-                  <Link to="/register">Don't have an account?</Link>
-                </div>
-                <div>
-                  <Link to="/forgotPwd">Trouble signing in?</Link>
+                  <Link to="/forgotPwd">
+                    <p style={{ color: "rgb(78, 143, 235)" }}>
+                      Forgot Password
+                    </p>
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="login-button-div" style={{ padding: 10 }}>
-              <button className='login-button' type="submit">Login</button>
+              <div>
+                <Link to="/register">
+                  <p style={{ color: "rgb(78, 143, 235)" }}>Create account</p>
+                </Link>
+              </div>
+              <div>
+                <button className="login-button" type="submit">
+                  Sign in
+                </button>
+              </div>
             </div>
           </form>
+        </div>
+        <div>
+          {error && (
+            <p className="error" style={{ color: "red" }}>
+              *{error}
+            </p>
+          )}
         </div>
       </div>
     </>
